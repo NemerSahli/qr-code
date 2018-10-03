@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Qr creator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script src="qrcode.min.js"></script>
+</head>
+
+<body>
+    <input id="input-text" type="text" value="https://github.com/NemerSahli" />
+    <div id="qr-code-id"></div>
+
+    <script>
+       var qrcode = new QRCode("qr-code-id");
+
+        $("#input-text").on("keyup", function () {
+            qrcode.makeCode($(this).val());
+        }).keyup().focus();
+    </script>
+</body>
+</html>

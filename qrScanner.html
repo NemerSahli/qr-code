@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>QR scanner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="instascan.min.js"></script>
+  </head>
+  <body>
+    <video id="preview"></video>
+    <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        console.log(content);
+        alert('your code content: '+content);
+        window.open(content, "_blank");
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('Cameras not found!');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+  </body>
+</html>
